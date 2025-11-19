@@ -3,6 +3,8 @@ import { WelcomeCard } from "@/components/home/WelcomeCard";
 import { StatsCards } from "@/components/home/StatsCards";
 import { SubscriptionCard } from "@/components/home/SubscriptionCard";
 import { QuickActions } from "@/components/home/QuickActions";
+import { TodayReminders } from "@/components/home/TodayReminders";
+import { ActiveCoursesWidget } from "@/components/home/ActiveCoursesWidget";
 
 const Home = () => {
   // Mock data - в реальном приложении будет из API
@@ -26,6 +28,10 @@ const Home = () => {
           userName={userData.name}
           todayRemindersCount={userData.todayReminders}
         />
+        
+        <TodayReminders />
+
+        <ActiveCoursesWidget />
         
         <StatsCards 
           remindersCount={userData.totalReminders}

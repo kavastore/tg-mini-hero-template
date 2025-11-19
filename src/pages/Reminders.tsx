@@ -21,33 +21,42 @@ const Reminders = () => {
     active: boolean;
     nextFireAt: string;
     schedule: string;
+    courseProgress?: number;
+    remainingPills?: number;
+    needsToBuy?: boolean;
   }> = [
     {
       id: "1",
-      title: "Принять лекарство",
-      message: "Не забудь принять витамины",
+      title: "Витамин D3",
+      message: "Принимать по 1 таблетке после еды",
       type: "medication",
       active: true,
       nextFireAt: "2025-11-19T10:00:00",
       schedule: "Каждый день в 10:00",
+      courseProgress: 65,
+      remainingPills: 14,
+      needsToBuy: false,
     },
     {
       id: "2",
-      title: "Встреча с командой",
-      message: "Обсудить план на неделю",
-      type: "appointment",
+      title: "Омега-3",
+      message: "2 капсулы во время завтрака",
+      type: "medication",
       active: true,
-      nextFireAt: "2025-11-19T14:30:00",
-      schedule: "Сегодня в 14:30",
+      nextFireAt: "2025-11-19T09:00:00",
+      schedule: "Каждый день в 09:00",
+      courseProgress: 85,
+      remainingPills: 6,
+      needsToBuy: true,
     },
     {
       id: "3",
-      title: "Занятие английским",
-      message: "Урок с преподавателем",
-      type: "custom",
-      active: false,
-      nextFireAt: "2025-11-20T18:00:00",
-      schedule: "Каждый ПН и СР в 18:00",
+      title: "Прием у кардиолога",
+      message: "Плановый осмотр",
+      type: "appointment",
+      active: true,
+      nextFireAt: "2025-11-20T14:30:00",
+      schedule: "20 ноября в 14:30",
     },
   ];
 
