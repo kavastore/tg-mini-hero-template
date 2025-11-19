@@ -99,10 +99,20 @@ const MedicalCard = () => {
       <div className="pt-14 pb-4 space-y-3">
         {/* Общая статистика */}
         <Card className="p-4">
-          <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
-            <Activity className="h-4 w-4 text-primary" />
-            Общая статистика
-          </h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
+              <Activity className="h-4 w-4 text-primary" />
+              Общая статистика
+            </h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate("/diagnosis/create")}
+              className="h-8"
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
+          </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="p-3 bg-muted/50 rounded-lg">
               <div className="text-2xl font-bold text-foreground mb-1">

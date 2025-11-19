@@ -1,8 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import { Pill, Calendar, Sparkles, Clock, ShoppingCart, AlertCircle, Check } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
-import { Pill, Calendar, Sparkles, Clock, ShoppingCart, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface ReminderCardProps {
@@ -13,7 +16,6 @@ interface ReminderCardProps {
   active: boolean;
   nextFireAt: string;
   schedule: string;
-  onClick?: () => void;
   courseProgress?: number;
   remainingPills?: number;
   needsToBuy?: boolean;
@@ -27,30 +29,106 @@ const typeConfig = {
 };
 
 export const ReminderCard = ({ 
+  id,
   title, 
   message, 
   type, 
   active, 
   nextFireAt, 
   schedule,
-  onClick,
   courseProgress,
   remainingPills,
   needsToBuy
 }: ReminderCardProps) => {
+  const navigate = useNavigate();
   const config = typeConfig[type];
   const Icon = config.icon;
   const nextDate = new Date(nextFireAt);
   const isToday = nextDate.toDateString() === new Date().toDateString();
+  
+  const [swipeOffset, setSwipeOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+    
+    if (diff > -80 && diff < 80) {
+      setSwipeOffset(diff);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    
+    if (swipeOffset > 50) {
+      toast.success("Прием отмечен", {
+        icon: <Check className="h-4 w-4" />,
+      });
+      setSwipeOffset(0);
+    } else if (swipeOffset < -50) {
+      toast.info("Прием отложен на 30 минут", {
+        icon: <Clock className="h-4 w-4" />,
+      });
+      setSwipeOffset(0);
+    } else {
+      setSwipeOffset(0);
+    }
+  };
+
+  const handleClick = () => {
+    if (Math.abs(swipeOffset) < 5) {
+      navigate(`/reminders/${id}`);
+    }
+  };
 
   return (
-    <Card 
-      className={cn(
-        "p-4 transition-smooth cursor-pointer hover:shadow-smooth-md",
-        !active && "opacity-60"
-      )}
-      onClick={onClick}
-    >
+    <div className="relative overflow-hidden">
+      {/* Фоновые индикаторы свайпа */}
+      <div className="absolute inset-0 flex items-center justify-between px-6 pointer-events-none">
+        <div
+          className={cn(
+            "flex items-center gap-2 text-success transition-opacity duration-200",
+            swipeOffset > 20 ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <Check className="h-5 w-5" />
+          <span className="text-sm font-medium">Принято</span>
+        </div>
+        <div
+          className={cn(
+            "flex items-center gap-2 text-warning transition-opacity duration-200",
+            swipeOffset < -20 ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <span className="text-sm font-medium">Отложить</span>
+          <Clock className="h-5 w-5" />
+        </div>
+      </div>
+
+      {/* Основная карточка */}
+      <Card 
+        className={cn(
+          "p-4 transition-all cursor-pointer hover:shadow-smooth-md",
+          !active && "opacity-60",
+          isDragging && "shadow-lg"
+        )}
+        style={{
+          transform: `translateX(${swipeOffset}px)`,
+          transition: isDragging ? "none" : "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onClick={handleClick}
+      >
       <div className="flex items-start gap-3">
         <div className={cn(
           "p-2 rounded-lg",
@@ -119,6 +197,7 @@ export const ReminderCard = ({
           )}
         </div>
       </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
