@@ -17,6 +17,8 @@ import {
 import { toast } from "sonner";
 import { useState } from "react";
 
+const navigate = useNavigate();
+
 const Settings = () => {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState(true);
@@ -69,7 +71,7 @@ const Settings = () => {
           label: "Тема оформления",
           subtitle: "Следует за Telegram",
           type: "link",
-          onClick: () => alert("Тема задается автоматически из Telegram"),
+          onClick: () => toast.info("Тема задается автоматически из Telegram"),
         },
       ],
     },
@@ -81,14 +83,14 @@ const Settings = () => {
           label: "Язык",
           subtitle: "Русский",
           type: "link",
-          onClick: () => alert("Выбор языка"),
+          onClick: () => navigate("/settings/language"),
         },
         {
           icon: Clock,
           label: "Часовой пояс",
           subtitle: "UTC+3 (Москва)",
           type: "link",
-          onClick: () => alert("Выбор часового пояса"),
+          onClick: () => navigate("/settings/timezone"),
         },
       ],
     },
@@ -99,14 +101,14 @@ const Settings = () => {
           icon: Shield,
           label: "Конфиденциальность",
           type: "link",
-          onClick: () => alert("Настройки конфиденциальности"),
+          onClick: () => navigate("/settings/privacy"),
         },
         {
           icon: Database,
           label: "Хранилище данных",
           subtitle: "1.2 МБ используется",
           type: "link",
-          onClick: () => alert("Управление данными"),
+          onClick: () => navigate("/settings/data-management"),
         },
       ],
     },
