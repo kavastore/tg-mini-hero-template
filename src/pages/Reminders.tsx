@@ -74,13 +74,13 @@ const Reminders = () => {
         />
 
         <div className="space-y-3">
-          {filteredReminders.map((reminder) => (
-            <ReminderCard 
-              key={reminder.id}
-              {...reminder}
-              onClick={() => navigate(`/reminders/${reminder.id}`)}
-            />
-          ))}
+        {filteredReminders.map((reminder) => (
+          <ReminderCard 
+            key={reminder.id}
+            {...reminder}
+            onClick={() => navigate(`/reminders/${reminder.id}`)}
+          />
+        ))}
         </div>
 
         {filteredReminders.length === 0 && (

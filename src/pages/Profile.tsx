@@ -7,15 +7,21 @@ import {
   User, 
   Settings, 
   CreditCard, 
-  Bell, 
-  Moon, 
-  Globe, 
   HelpCircle,
   LogOut,
   ChevronRight,
   Crown
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { LucideIcon } from "lucide-react";
+
+interface MenuItem {
+  icon: LucideIcon;
+  label: string;
+  onClick: () => void;
+  badge?: string;
+  subtitle?: string;
+}
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -28,7 +34,7 @@ const Profile = () => {
     planStatus: "active" as const,
   };
 
-  const menuSections = [
+  const menuSections: Array<{ title: string; items: MenuItem[] }> = [
     {
       title: "Аккаунт",
       items: [
@@ -49,21 +55,9 @@ const Profile = () => {
       title: "Настройки",
       items: [
         {
-          icon: Bell,
-          label: "Уведомления",
-          onClick: () => alert("Настройки уведомлений"),
-        },
-        {
-          icon: Moon,
-          label: "Тема оформления",
-          subtitle: "Следует за Telegram",
-          onClick: () => alert("Тема задается в Telegram"),
-        },
-        {
-          icon: Globe,
-          label: "Язык",
-          subtitle: "Русский",
-          onClick: () => alert("Выбор языка"),
+          icon: Settings,
+          label: "Настройки приложения",
+          onClick: () => navigate("/settings"),
         },
       ],
     },
