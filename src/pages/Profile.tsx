@@ -11,7 +11,8 @@ import {
   LogOut,
   ChevronRight,
   Crown,
-  Heart
+  Heart,
+  Share2
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
@@ -49,6 +50,12 @@ const Profile = () => {
           label: "Медицинская карта",
           subtitle: "История и статистика",
           onClick: () => navigate("/medical-card"),
+        },
+        {
+          icon: Share2,
+          label: "Поделиться аккаунтом",
+          subtitle: "Доступ для семьи и врачей",
+          onClick: () => navigate("/settings/share-account"),
         },
         {
           icon: CreditCard,

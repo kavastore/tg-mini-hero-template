@@ -15,6 +15,8 @@ const Language = () => {
     { code: "en", name: "English", nativeName: "English" },
     { code: "uk", name: "Ukrainian", nativeName: "Українська" },
     { code: "kk", name: "Kazakh", nativeName: "Қазақша" },
+    { code: "ky", name: "Kyrgyz", nativeName: "Кыргызча" },
+    { code: "be", name: "Belarusian", nativeName: "Беларуская" },
     { code: "uz", name: "Uzbek", nativeName: "O'zbekcha" },
   ];
 
