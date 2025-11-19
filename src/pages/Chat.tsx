@@ -41,8 +41,10 @@ const Chat = () => {
   );
 
   return (
-    <MainLayout title="AI Чат" showBottomNav>
-      <div className="py-4 space-y-4">
+    <MainLayout showBottomNav>
+      <div className="pt-3 space-y-3">
+        <h1 className="text-2xl font-bold text-foreground mb-2">AI Чат</h1>
+        
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
         <div className="space-y-3">

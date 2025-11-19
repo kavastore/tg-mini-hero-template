@@ -9,6 +9,7 @@ import ReminderCreate from "./pages/ReminderCreate";
 import Chat from "./pages/Chat";
 import ChatThread from "./pages/ChatThread";
 import Calendar from "./pages/Calendar";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/chat" element={<Chat />} />
           <Route path="/chat/:threadId" element={<ChatThread />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

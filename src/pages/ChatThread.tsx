@@ -3,6 +3,8 @@ import { ChatMessage } from "@/components/chat/ChatMessage";
 import { ChatInput } from "@/components/chat/ChatInput";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ChatThread = () => {
   const navigate = useNavigate();
@@ -50,14 +52,25 @@ const ChatThread = () => {
     }, 1000);
   };
 
+  const chatTitle = threadId === "new" ? "Новый чат" : "Советы по здоровью";
+
   return (
-    <MainLayout
-      title={threadId === "new" ? "Новый чат" : "Советы по здоровью"}
-      showBack
-      onBack={() => navigate("/chat")}
-      showBottomNav={false}
-    >
-      <div className="flex flex-col h-[calc(100vh-4rem)]">
+    <MainLayout showBottomNav={false}>
+      <div className="fixed top-0 left-0 right-0 z-40 bg-card border-b px-3 py-3 flex items-center gap-3">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate("/chat")}
+          className="shrink-0"
+        >
+          <ArrowLeft className="h-5 w-5" />
+        </Button>
+        <h1 className="text-lg font-semibold text-foreground truncate">
+          {chatTitle}
+        </h1>
+      </div>
+
+      <div className="flex flex-col h-[calc(100vh-3.5rem)] pt-14">
         <div className="flex-1 overflow-y-auto space-y-4 py-4">
           {messages.map((message) => (
             <ChatMessage key={message.id} {...message} />
