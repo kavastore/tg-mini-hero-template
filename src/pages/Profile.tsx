@@ -10,7 +10,8 @@ import {
   HelpCircle,
   LogOut,
   ChevronRight,
-  Crown
+  Crown,
+  Heart
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
@@ -42,6 +43,12 @@ const Profile = () => {
           icon: User,
           label: "Личные данные",
           onClick: () => navigate("/settings/profile-edit"),
+        },
+        {
+          icon: Heart,
+          label: "Медицинская карта",
+          subtitle: "История и статистика",
+          onClick: () => navigate("/medical-card"),
         },
         {
           icon: CreditCard,

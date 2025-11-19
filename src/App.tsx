@@ -24,6 +24,7 @@ import Privacy from "./pages/settings/Privacy";
 import DataManagement from "./pages/settings/DataManagement";
 import ScanMedication from "./pages/ScanMedication";
 import Statistics from "./pages/Statistics";
+import MedicalCard from "./pages/MedicalCard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -56,6 +57,7 @@ const App = () => (
           <Route path="/settings/data-management" element={<DataManagement />} />
           <Route path="/scan-medication" element={<ScanMedication />} />
           <Route path="/statistics" element={<Statistics />} />
+          <Route path="/medical-card" element={<MedicalCard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

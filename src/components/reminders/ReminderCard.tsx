@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Pill, Calendar, Sparkles, Clock } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Pill, Calendar, Sparkles, Clock, ShoppingCart, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ReminderCardProps {
@@ -13,6 +14,9 @@ interface ReminderCardProps {
   nextFireAt: string;
   schedule: string;
   onClick?: () => void;
+  courseProgress?: number;
+  remainingPills?: number;
+  needsToBuy?: boolean;
 }
 
 const typeConfig = {
@@ -29,7 +33,10 @@ export const ReminderCard = ({
   active, 
   nextFireAt, 
   schedule,
-  onClick 
+  onClick,
+  courseProgress,
+  remainingPills,
+  needsToBuy
 }: ReminderCardProps) => {
   const config = typeConfig[type];
   const Icon = config.icon;
@@ -73,12 +80,43 @@ export const ReminderCard = ({
                 Сегодня
               </Badge>
             )}
+            {needsToBuy && active && (
+              <Badge
+                variant="outline"
+                className="text-xs bg-warning/10 text-warning border-warning/30"
+              >
+                <ShoppingCart className="h-3 w-3 mr-1" />
+                Купить
+              </Badge>
+            )}
           </div>
           
           <div className="mt-2 text-xs text-muted-foreground">
             <Clock className="h-3 w-3 inline mr-1" />
             {schedule}
           </div>
+
+          {/* Прогресс курса */}
+          {type === "medication" && courseProgress !== undefined && (
+            <div className="mt-3 space-y-1.5">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-muted-foreground">Прогресс курса</span>
+                {remainingPills !== undefined && (
+                  <span className={cn(
+                    "font-medium",
+                    needsToBuy ? "text-warning flex items-center gap-1" : "text-foreground"
+                  )}>
+                    {needsToBuy && <AlertCircle className="h-3 w-3" />}
+                    {remainingPills} таб.
+                  </span>
+                )}
+              </div>
+              <Progress value={courseProgress} className="h-1.5" />
+              <div className="text-xs text-muted-foreground">
+                {courseProgress}% пройдено
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Card>

@@ -1,12 +1,14 @@
 import { MainLayout } from "@/components/layout/MainLayout";
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<number | null>(null);
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -21,12 +23,28 @@ const Calendar = () => {
 
   const { daysInMonth, startingDayOfWeek } = getDaysInMonth(currentDate);
 
-  // Mock данные - напоминания по датам
-  const reminders: Record<number, number> = {
-    19: 3,
-    20: 1,
-    21: 2,
-    25: 4,
+  // Mock данные - история приемов по датам
+  const medicationHistory: Record<number, Array<{ name: string; taken: boolean; time: string }>> = {
+    15: [
+      { name: "Витамин D3", taken: true, time: "10:00" },
+      { name: "Омега-3", taken: true, time: "09:00" },
+    ],
+    16: [
+      { name: "Витамин D3", taken: true, time: "10:00" },
+      { name: "Омега-3", taken: false, time: "09:00" },
+    ],
+    17: [
+      { name: "Витамин D3", taken: true, time: "10:00" },
+      { name: "Омега-3", taken: true, time: "09:00" },
+    ],
+    18: [
+      { name: "Витамин D3", taken: false, time: "10:00" },
+      { name: "Омега-3", taken: true, time: "09:00" },
+    ],
+    19: [
+      { name: "Витамин D3", taken: true, time: "10:00" },
+      { name: "Омега-3", taken: true, time: "09:00" },
+    ],
   };
 
   const prevMonth = () => {
