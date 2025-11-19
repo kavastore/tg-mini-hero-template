@@ -17,8 +17,6 @@ import {
 import { toast } from "sonner";
 import { useState } from "react";
 
-const navigate = useNavigate();
-
 const Settings = () => {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState(true);
