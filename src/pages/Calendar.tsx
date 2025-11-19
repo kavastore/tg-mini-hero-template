@@ -107,27 +107,34 @@ const Calendar = () => {
               const isToday = day === new Date().getDate() && 
                             currentDate.getMonth() === new Date().getMonth() &&
                             currentDate.getFullYear() === new Date().getFullYear();
-              const hasReminders = reminders[day];
+              const dayHistory = medicationHistory[day];
+              const hasHistory = dayHistory && dayHistory.length > 0;
+              const allTaken = dayHistory?.every(h => h.taken);
+              const someMissed = dayHistory?.some(h => !h.taken);
 
               return (
                 <button
                   key={day}
+                  onClick={() => setSelectedDate(day === selectedDate ? null : day)}
                   className={cn(
                     "relative aspect-square flex flex-col items-center justify-center rounded-lg text-sm transition-smooth",
                     isToday
                       ? "bg-primary text-primary-foreground font-bold"
                       : "hover:bg-muted",
-                    hasReminders && !isToday && "font-semibold"
+                    hasHistory && !isToday && "font-semibold",
+                    selectedDate === day && "ring-2 ring-primary ring-offset-2"
                   )}
                 >
                   <span>{day}</span>
-                  {hasReminders && (
-                    <Badge
-                      variant="secondary"
-                      className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-[10px]"
-                    >
-                      {hasReminders}
-                    </Badge>
+                  {hasHistory && (
+                    <div className="absolute bottom-1 flex gap-0.5">
+                      {allTaken && (
+                        <div className="h-1.5 w-1.5 rounded-full bg-success" />
+                      )}
+                      {someMissed && !allTaken && (
+                        <div className="h-1.5 w-1.5 rounded-full bg-warning" />
+                      )}
+                    </div>
                   )}
                 </button>
               );
@@ -135,19 +142,66 @@ const Calendar = () => {
           </div>
         </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <CalendarIcon className="h-4 w-4 text-primary" />
-            <h3 className="font-semibold">Сегодня</h3>
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between p-3 rounded-lg bg-muted">
-              <span className="text-sm">Принять лекарство</span>
-              <span className="text-xs text-muted-foreground">10:00</span>
+        {/* История выбранного дня */}
+        {selectedDate && medicationHistory[selectedDate] && (
+          <Card className="p-4 animate-in slide-in-from-top-2">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-foreground">
+                {selectedDate} {currentDate.toLocaleDateString("ru-RU", { month: "long" })}
+              </h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedDate(null)}
+              >
+                Закрыть
+              </Button>
             </div>
-            <div className="flex items-center justify-between p-3 rounded-lg bg-muted">
-              <span className="text-sm">Встреча с командой</span>
-              <span className="text-xs text-muted-foreground">14:30</span>
+            <div className="space-y-2">
+              {medicationHistory[selectedDate].map((record, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 p-2 rounded-lg bg-muted/50"
+                >
+                  {record.taken ? (
+                    <CheckCircle2 className="h-5 w-5 text-success shrink-0" />
+                  ) : (
+                    <XCircle className="h-5 w-5 text-warning shrink-0" />
+                  )}
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground">
+                      {record.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{record.time}</p>
+                  </div>
+                  <Badge
+                    variant={record.taken ? "default" : "secondary"}
+                    className={cn(
+                      "text-xs",
+                      record.taken
+                        ? "bg-success/10 text-success border-success/30"
+                        : "bg-warning/10 text-warning border-warning/30"
+                    )}
+                  >
+                    {record.taken ? "Принял" : "Пропустил"}
+                  </Badge>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
+
+        {/* Легенда */}
+        <Card className="p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-3">Обозначения</h3>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-sm">
+              <div className="h-3 w-3 rounded-full bg-success" />
+              <span className="text-muted-foreground">Все приемы выполнены</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <div className="h-3 w-3 rounded-full bg-warning" />
+              <span className="text-muted-foreground">Есть пропущенные приемы</span>
             </div>
           </div>
         </Card>
@@ -155,9 +209,5 @@ const Calendar = () => {
     </MainLayout>
   );
 };
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(" ");
-}
 
 export default Calendar;
