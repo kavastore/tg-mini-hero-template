@@ -67,9 +67,9 @@ const Settings = () => {
         {
           icon: Moon,
           label: "Тема оформления",
-          subtitle: "Следует за Telegram",
+          subtitle: "Авто (как в Telegram)",
           type: "link",
-          onClick: () => toast.info("Тема задается автоматически из Telegram"),
+          onClick: () => navigate("/settings/appearance"),
         },
       ],
     },
