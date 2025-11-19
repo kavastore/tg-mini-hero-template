@@ -16,7 +16,7 @@ export const FloatingActionButton = () => {
 
   const handleAction = (action: "reminder" | "chat") => {
     if (action === "reminder") {
-      navigate("/reminder/create");
+      navigate("/reminders/create");
     } else {
       navigate("/chat");
       // Здесь можно добавить логику создания нового чата
@@ -30,7 +30,7 @@ export const FloatingActionButton = () => {
       <Button
         size="icon"
         className="fixed bottom-20 right-4 z-50 h-14 w-14 rounded-full shadow-smooth-lg hover:shadow-smooth-lg hover:scale-110 transition-all duration-200 animate-fade-in"
-        onClick={() => navigate("/reminder/create")}
+        onClick={() => navigate("/reminders/create")}
       >
         <Bell className="h-6 w-6" />
       </Button>

@@ -23,6 +23,7 @@ import Timezone from "./pages/settings/Timezone";
 import Privacy from "./pages/settings/Privacy";
 import DataManagement from "./pages/settings/DataManagement";
 import ShareAccount from "./pages/settings/ShareAccount";
+import Appearance from "./pages/settings/Appearance";
 import ScanMedication from "./pages/ScanMedication";
 import Statistics from "./pages/Statistics";
 import MedicalCard from "./pages/MedicalCard";
@@ -58,6 +59,7 @@ const App = () => (
           <Route path="/settings/privacy" element={<Privacy />} />
           <Route path="/settings/data-management" element={<DataManagement />} />
           <Route path="/settings/share-account" element={<ShareAccount />} />
+          <Route path="/settings/appearance" element={<Appearance />} />
           <Route path="/scan-medication" element={<ScanMedication />} />
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/medical-card" element={<MedicalCard />} />
