@@ -16,6 +16,14 @@ import Profile from "./pages/Profile";
 import Subscription from "./pages/Subscription";
 import CurrentSubscription from "./pages/CurrentSubscription";
 import Settings from "./pages/Settings";
+import ProfileEdit from "./pages/settings/ProfileEdit";
+import Help from "./pages/settings/Help";
+import Language from "./pages/settings/Language";
+import Timezone from "./pages/settings/Timezone";
+import Privacy from "./pages/settings/Privacy";
+import DataManagement from "./pages/settings/DataManagement";
+import ScanMedication from "./pages/ScanMedication";
+import Statistics from "./pages/Statistics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +48,14 @@ const App = () => (
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/subscription/current" element={<CurrentSubscription />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/settings/profile-edit" element={<ProfileEdit />} />
+          <Route path="/settings/help" element={<Help />} />
+          <Route path="/settings/language" element={<Language />} />
+          <Route path="/settings/timezone" element={<Timezone />} />
+          <Route path="/settings/privacy" element={<Privacy />} />
+          <Route path="/settings/data-management" element={<DataManagement />} />
+          <Route path="/scan-medication" element={<ScanMedication />} />
+          <Route path="/statistics" element={<Statistics />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

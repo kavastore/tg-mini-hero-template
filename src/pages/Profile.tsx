@@ -41,7 +41,7 @@ const Profile = () => {
         {
           icon: User,
           label: "Личные данные",
-          onClick: () => alert("Редактирование профиля"),
+          onClick: () => navigate("/settings/profile-edit"),
         },
         {
           icon: CreditCard,
@@ -67,7 +67,7 @@ const Profile = () => {
         {
           icon: HelpCircle,
           label: "Помощь",
-          onClick: () => alert("Открыть справку"),
+          onClick: () => navigate("/settings/help"),
         },
       ],
     },
@@ -104,7 +104,7 @@ const Profile = () => {
           <Button 
             variant="outline" 
             className="w-full"
-            onClick={() => alert("Редактирование профиля")}
+            onClick={() => navigate("/settings/profile-edit")}
           >
             <User className="h-4 w-4 mr-2" />
             Редактировать профиль
