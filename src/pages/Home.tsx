@@ -5,6 +5,8 @@ import { SubscriptionCard } from "@/components/home/SubscriptionCard";
 import { QuickActions } from "@/components/home/QuickActions";
 import { TodayReminders } from "@/components/home/TodayReminders";
 import { ActiveCoursesWidget } from "@/components/home/ActiveCoursesWidget";
+import { StreakCounter } from "@/components/home/StreakCounter";
+import { FloatingActionButton } from "@/components/layout/FloatingActionButton";
 
 const Home = () => {
   // Mock data - в реальном приложении будет из API
@@ -29,6 +31,8 @@ const Home = () => {
           todayRemindersCount={userData.todayReminders}
         />
         
+        <StreakCounter />
+        
         <TodayReminders />
 
         <ActiveCoursesWidget />
@@ -42,6 +46,8 @@ const Home = () => {
 
         <QuickActions />
       </div>
+      
+      <FloatingActionButton />
     </MainLayout>
   );
 };

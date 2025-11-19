@@ -2,6 +2,7 @@ import { MainLayout } from "@/components/layout/MainLayout";
 import { ReminderCard } from "@/components/reminders/ReminderCard";
 import { SearchBar } from "@/components/reminders/SearchBar";
 import { FilterTabs } from "@/components/reminders/FilterTabs";
+import { FloatingActionButton } from "@/components/layout/FloatingActionButton";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -87,7 +88,6 @@ const Reminders = () => {
           <ReminderCard 
             key={reminder.id}
             {...reminder}
-            onClick={() => navigate(`/reminders/${reminder.id}`)}
           />
         ))}
         </div>
@@ -106,14 +106,8 @@ const Reminders = () => {
           </div>
         )}
       </div>
-
-      <Button
-        size="lg"
-        className="fixed bottom-20 right-4 md:bottom-4 h-14 w-14 rounded-full shadow-glow"
-        onClick={() => navigate("/reminders/create")}
-      >
-        <Plus className="h-6 w-6" />
-      </Button>
+      
+      <FloatingActionButton />
     </MainLayout>
   );
 };

@@ -1,6 +1,7 @@
 import { MainLayout } from "@/components/layout/MainLayout";
 import { ChatThreadCard } from "@/components/chat/ChatThreadCard";
 import { SearchBar } from "@/components/reminders/SearchBar";
+import { FloatingActionButton } from "@/components/layout/FloatingActionButton";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -71,14 +72,8 @@ const Chat = () => {
           </div>
         )}
       </div>
-
-      <Button
-        size="lg"
-        className="fixed bottom-20 right-4 md:bottom-4 h-14 w-14 rounded-full shadow-glow"
-        onClick={() => navigate("/chat/new")}
-      >
-        <Plus className="h-6 w-6" />
-      </Button>
+      
+      <FloatingActionButton />
     </MainLayout>
   );
 };

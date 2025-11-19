@@ -16,6 +16,11 @@ const ProfileEdit = () => {
     username: "alexander_iv",
     email: "alexander@example.com",
     phone: "+7 (999) 123-45-67",
+    birthDate: "1990-01-15",
+    bloodType: "A(II) Rh+",
+    allergies: "Пенициллин",
+    chronicDiseases: "",
+    emergencyContact: "+7 (999) 000-00-00",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -102,6 +107,68 @@ const ProfileEdit = () => {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="+7 (999) 123-45-67"
+              />
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-4">
+          <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
+            <span className="h-1 w-1 rounded-full bg-primary" />
+            Медицинская информация
+          </h2>
+          
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="birthDate">Дата рождения</Label>
+                <Input
+                  id="birthDate"
+                  type="date"
+                  value={formData.birthDate}
+                  onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <Label htmlFor="bloodType">Группа крови</Label>
+                <Input
+                  id="bloodType"
+                  value={formData.bloodType}
+                  onChange={(e) => setFormData({ ...formData, bloodType: e.target.value })}
+                  placeholder="A(II) Rh+"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="allergies">Аллергии</Label>
+              <Input
+                id="allergies"
+                value={formData.allergies}
+                onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
+                placeholder="Укажите аллергены"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="chronicDiseases">Хронические заболевания</Label>
+              <Input
+                id="chronicDiseases"
+                value={formData.chronicDiseases}
+                onChange={(e) => setFormData({ ...formData, chronicDiseases: e.target.value })}
+                placeholder="Через запятую"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="emergencyContact">Экстренный контакт</Label>
+              <Input
+                id="emergencyContact"
+                type="tel"
+                value={formData.emergencyContact}
+                onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
+                placeholder="+7 (999) 000-00-00"
               />
             </div>
           </div>
