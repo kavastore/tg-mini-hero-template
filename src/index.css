@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Telegram Mini App Design System */
 
 @layer base {
   :root {
-    /* Hero UI inspired palette - Modern blue-purple gradients */
+    /* Telegram theme integration - follows Telegram's color scheme */
     --background: 220 20% 98%;
     --foreground: 220 15% 15%;
 
@@ -18,34 +16,27 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 15%;
 
-    /* Primary: Beautiful blue-purple gradient base */
     --primary: 250 85% 60%;
     --primary-light: 245 90% 70%;
     --primary-dark: 255 80% 50%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Soft purple-pink */
-    --secondary: 280 65% 92%;
-    --secondary-foreground: 280 60% 25%;
+    --secondary: 220 15% 95%;
+    --secondary-foreground: 220 15% 15%;
 
-    /* Muted: Light gray backgrounds */
     --muted: 220 15% 95%;
     --muted-foreground: 220 12% 50%;
 
-    /* Accent: Vibrant purple for highlights */
     --accent: 270 75% 65%;
     --accent-light: 265 80% 75%;
     --accent-foreground: 0 0% 100%;
 
-    /* Success: Fresh green */
     --success: 145 65% 50%;
     --success-foreground: 0 0% 100%;
 
-    /* Warning: Warm orange */
     --warning: 35 90% 60%;
     --warning-foreground: 0 0% 100%;
 
-    /* Destructive: Soft red */
     --destructive: 0 75% 60%;
     --destructive-foreground: 0 0% 100%;
 
@@ -58,65 +49,63 @@ All colors MUST be HSL.
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(245 90% 70%) 0%, hsl(255 80% 50%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(280 65% 92%) 0%, hsl(270 70% 85%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(265 80% 75%) 0%, hsl(270 75% 65%) 100%);
     
-    /* Shadows */
-    --shadow-sm: 0 2px 8px -2px hsl(250 85% 60% / 0.1);
-    --shadow-md: 0 4px 16px -4px hsl(250 85% 60% / 0.15);
-    --shadow-lg: 0 8px 32px -8px hsl(250 85% 60% / 0.2);
-    --shadow-glow: 0 0 24px hsl(250 85% 60% / 0.3);
+    /* Compact shadows for mobile */
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    --shadow-md: 0 2px 8px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 4px 16px -4px rgb(0 0 0 / 0.15);
 
     /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .dark {
-    --background: 240 20% 10%;
-    --foreground: 220 15% 95%;
+  /* Dark theme - automatically follows Telegram */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 240 20% 10%;
+      --foreground: 220 15% 95%;
 
-    --card: 240 15% 13%;
-    --card-foreground: 220 15% 95%;
+      --card: 240 15% 13%;
+      --card-foreground: 220 15% 95%;
 
-    --popover: 240 15% 13%;
-    --popover-foreground: 220 15% 95%;
+      --popover: 240 15% 13%;
+      --popover-foreground: 220 15% 95%;
 
-    --primary: 250 85% 65%;
-    --primary-light: 245 90% 75%;
-    --primary-dark: 255 80% 55%;
-    --primary-foreground: 0 0% 100%;
+      --primary: 250 85% 65%;
+      --primary-light: 245 90% 75%;
+      --primary-dark: 255 80% 55%;
+      --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 20% 18%;
-    --secondary-foreground: 220 15% 95%;
+      --secondary: 240 20% 18%;
+      --secondary-foreground: 220 15% 95%;
 
-    --muted: 240 15% 16%;
-    --muted-foreground: 220 12% 65%;
+      --muted: 240 15% 16%;
+      --muted-foreground: 220 12% 65%;
 
-    --accent: 270 75% 70%;
-    --accent-light: 265 80% 80%;
-    --accent-foreground: 0 0% 100%;
+      --accent: 270 75% 70%;
+      --accent-light: 265 80% 80%;
+      --accent-foreground: 0 0% 100%;
 
-    --success: 145 65% 55%;
-    --success-foreground: 0 0% 100%;
+      --success: 145 65% 55%;
+      --success-foreground: 0 0% 100%;
 
-    --warning: 35 90% 65%;
-    --warning-foreground: 0 0% 100%;
+      --warning: 35 90% 65%;
+      --warning-foreground: 0 0% 100%;
 
-    --destructive: 0 75% 65%;
-    --destructive-foreground: 0 0% 100%;
+      --destructive: 0 75% 65%;
+      --destructive-foreground: 0 0% 100%;
 
-    --border: 240 20% 20%;
-    --input: 240 20% 18%;
-    --ring: 250 85% 65%;
+      --border: 240 20% 20%;
+      --input: 240 20% 18%;
+      --ring: 250 85% 65%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(245 90% 75%) 0%, hsl(255 80% 55%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(240 20% 18%) 0%, hsl(245 25% 22%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(265 80% 80%) 0%, hsl(270 75% 70%) 100%);
-    
-    --shadow-sm: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
-    --shadow-md: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
-    --shadow-lg: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 24px hsl(250 85% 65% / 0.4);
+      --gradient-primary: linear-gradient(135deg, hsl(245 90% 75%) 0%, hsl(255 80% 55%) 100%);
+      --gradient-secondary: linear-gradient(135deg, hsl(240 20% 18%) 0%, hsl(245 25% 22%) 100%);
+      
+      --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+      --shadow-md: 0 2px 8px -2px rgb(0 0 0 / 0.4);
+      --shadow-lg: 0 4px 16px -4px rgb(0 0 0 / 0.5);
+    }
   }
 }
 
@@ -128,6 +117,18 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    /* Telegram Mini App specific */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  /* Remove default padding for Telegram */
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
   }
 
   /* Smooth scrolling */
@@ -135,22 +136,27 @@ All colors MUST be HSL.
     scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar - minimal for mobile */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-muted/30;
+    @apply bg-transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-full;
+    @apply bg-muted-foreground/20 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground/50;
+    @apply bg-muted-foreground/30;
+  }
+
+  /* Safe area for iOS */
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
@@ -163,27 +169,19 @@ All colors MUST be HSL.
     background: var(--gradient-secondary);
   }
 
-  .gradient-accent {
-    background: var(--gradient-accent);
-  }
-
   .shadow-glow {
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
   }
 
   .transition-smooth {
     transition: var(--transition-smooth);
   }
 
-  .transition-bounce {
-    transition: var(--transition-bounce);
-  }
-
   /* Animations */
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
@@ -202,15 +200,15 @@ All colors MUST be HSL.
 
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+      box-shadow: 0 0 16px hsl(var(--primary) / 0.2);
     }
     50% {
-      box-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+      box-shadow: 0 0 24px hsl(var(--primary) / 0.4);
     }
   }
 
   .animate-fade-in {
-    animation: fade-in 0.5s ease-out;
+    animation: fade-in 0.4s ease-out;
   }
 
   .animate-slide-up {

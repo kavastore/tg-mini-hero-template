@@ -61,8 +61,10 @@ const Reminders = () => {
   });
 
   return (
-    <MainLayout title="Напоминания" showBottomNav>
-      <div className="py-4 space-y-4">
+    <MainLayout showBottomNav>
+      <div className="pt-3 space-y-3">
+        <h1 className="text-2xl font-bold text-foreground mb-2">Напоминания</h1>
+        
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
         
         <FilterTabs 

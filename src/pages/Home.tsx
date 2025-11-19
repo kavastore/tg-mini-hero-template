@@ -20,8 +20,8 @@ const Home = () => {
   };
 
   return (
-    <MainLayout title="MiniApp" showBottomNav>
-      <div className="py-4 space-y-1">
+    <MainLayout showBottomNav>
+      <div className="pt-3 space-y-3">
         <WelcomeCard 
           userName={userData.name}
           todayRemindersCount={userData.todayReminders}

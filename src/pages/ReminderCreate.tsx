@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 
 const ReminderCreate = () => {
   const navigate = useNavigate();
@@ -29,14 +30,23 @@ const ReminderCreate = () => {
   };
 
   return (
-    <MainLayout
-      title="Создать напоминание"
-      showBack
-      onBack={() => navigate("/reminders")}
-      showBottomNav={false}
-    >
-      <form onSubmit={handleSubmit} className="py-4 space-y-4">
-        <Card className="p-5 space-y-4">
+    <MainLayout showBottomNav={false}>
+      <div className="fixed top-0 left-0 right-0 z-40 bg-card border-b px-3 py-3 flex items-center gap-3">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate("/reminders")}
+          className="shrink-0"
+        >
+          <ArrowLeft className="h-5 w-5" />
+        </Button>
+        <h1 className="text-lg font-semibold text-foreground">
+          Создать напоминание
+        </h1>
+      </div>
+
+      <form onSubmit={handleSubmit} className="pt-14 pb-4 space-y-3">
+        <Card className="p-4 space-y-3">
           <div className="space-y-2">
             <Label htmlFor="title">Название *</Label>
             <Input
@@ -96,7 +106,7 @@ const ReminderCreate = () => {
           </div>
         </Card>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <Button
             type="button"
             variant="outline"

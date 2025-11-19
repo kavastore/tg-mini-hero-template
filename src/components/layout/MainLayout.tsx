@@ -1,38 +1,26 @@
 import { ReactNode } from "react";
-import { AppBar } from "./AppBar";
 import { BottomNav } from "./BottomNav";
+import { cn } from "@/lib/utils";
 
 interface MainLayoutProps {
   children: ReactNode;
-  title: string;
-  showBack?: boolean;
-  onBack?: () => void;
   showBottomNav?: boolean;
-  showMenu?: boolean;
+  className?: string;
 }
 
 export const MainLayout = ({ 
   children, 
-  title, 
-  showBack = false, 
-  onBack,
   showBottomNav = true,
-  showMenu = true 
+  className
 }: MainLayoutProps) => {
   return (
     <div className="min-h-screen bg-background">
-      <AppBar 
-        title={title} 
-        showBack={showBack} 
-        onBack={onBack}
-        showMenu={showMenu}
-      />
-      
       <main className={cn(
-        "pt-16 pb-4 animate-fade-in",
-        showBottomNav && "md:pb-4 pb-20"
+        "pb-3 animate-fade-in",
+        showBottomNav && "pb-20",
+        className
       )}>
-        <div className="container max-w-2xl mx-auto px-4">
+        <div className="container max-w-2xl mx-auto px-3">
           {children}
         </div>
       </main>
@@ -41,7 +29,3 @@ export const MainLayout = ({
     </div>
   );
 };
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(" ");
-}

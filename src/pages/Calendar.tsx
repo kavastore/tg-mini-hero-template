@@ -41,8 +41,10 @@ const Calendar = () => {
   const weekDays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
   return (
-    <MainLayout title="Календарь" showBottomNav>
-      <div className="py-4 space-y-4">
+    <MainLayout showBottomNav>
+      <div className="pt-3 space-y-3">
+        <h1 className="text-2xl font-bold text-foreground mb-2">Календарь</h1>
+        
         <Card className="p-4">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold capitalize">{monthName}</h2>
