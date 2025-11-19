@@ -21,13 +21,13 @@ export const QuickActions = () => {
       color: "text-primary",
       bgColor: "bg-primary/10 group-hover:bg-primary/20",
     },
-    {
-      icon: Settings,
-      label: "Настройки",
-      onClick: () => navigate("/settings"),
-      color: "text-muted-foreground",
-      bgColor: "bg-muted group-hover:bg-muted-foreground/20",
-    },
+          {
+            icon: Settings,
+            label: "Настройки",
+            onClick: () => navigate("/settings"),
+            color: "text-muted-foreground",
+            bgColor: "bg-muted group-hover:bg-muted-foreground/20",
+          },
   ];
 
   return (

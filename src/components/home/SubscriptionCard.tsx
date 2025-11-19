@@ -2,6 +2,7 @@ import { Crown } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 
 interface SubscriptionCardProps {
   planName: string;
@@ -10,6 +11,7 @@ interface SubscriptionCardProps {
 }
 
 export const SubscriptionCard = ({ planName, status, expiresAt }: SubscriptionCardProps) => {
+  const navigate = useNavigate();
   return (
     <Card className="p-5 mb-4 border-primary/20 hover:shadow-smooth-md transition-smooth">
       <div className="flex items-start gap-3 mb-4">
@@ -34,9 +36,9 @@ export const SubscriptionCard = ({ planName, status, expiresAt }: SubscriptionCa
           )}
         </div>
       </div>
-      <Button variant="outline" className="w-full">
-        Управление подпиской
-      </Button>
+          <Button variant="outline" className="w-full" onClick={() => navigate("/subscription")}>
+            Управление подпиской
+          </Button>
     </Card>
   );
 };

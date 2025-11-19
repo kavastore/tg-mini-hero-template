@@ -6,10 +6,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Reminders from "./pages/Reminders";
 import ReminderCreate from "./pages/ReminderCreate";
+import ReminderDetail from "./pages/ReminderDetail";
+import ReminderEdit from "./pages/ReminderEdit";
+import DeleteConfirm from "./pages/DeleteConfirm";
 import Chat from "./pages/Chat";
 import ChatThread from "./pages/ChatThread";
 import Calendar from "./pages/Calendar";
 import Profile from "./pages/Profile";
+import Subscription from "./pages/Subscription";
+import CurrentSubscription from "./pages/CurrentSubscription";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,10 +30,16 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/reminders" element={<Reminders />} />
           <Route path="/reminders/create" element={<ReminderCreate />} />
+          <Route path="/reminders/:id" element={<ReminderDetail />} />
+          <Route path="/reminders/:id/edit" element={<ReminderEdit />} />
+          <Route path="/reminders/delete-confirm/:id" element={<DeleteConfirm />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/chat/:threadId" element={<ChatThread />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route path="/subscription/current" element={<CurrentSubscription />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
